@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Norte Amercia</title>
+    <link rel="stylesheet" href="./css.css" />
+  </head>
+  <body>
+
+    <div class="cnto">
+        <div class="uno">
+            <div class="contenido">
+                <div id="message-area">
+                  Estado: <br /><br>
+                  <span style="color: red;" id="message"></span>
+                </div>
+              </div>
+        </div>
+        <div class="dos">
+            <div id="game-board-container">
+                <div class="game-board-wrapper">
+                  <div class="radar"></div>
+                  <table class="game-board">
+                    <thead>
+                      <tr>
+                        <td></td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>A</td>
+                        <td id="0"></td>
+                        <td id="1"></td>
+                        <td id="2"></td>
+                        <td id="3"></td>
+                        <td id="4"></td>
+                        <td id="5"></td>
+                        <td id="6"></td>
+                        <td id="7"></td>
+                        <td id="8"></td>
+                        <td id="9"></td>
+                      </tr>
+                      <tr>
+                        <td>B</td>
+                        <td id="10"></td>
+                        <td id="11"></td>
+                        <td id="12"></td>
+                        <td id="13"></td>
+                        <td id="14"></td>
+                        <td id="15"></td>
+                        <td id="16"></td>
+                        <td id="17"></td>
+                        <td id="18"></td>
+                        <td id="19"></td>
+                      </tr>
+                      <tr>
+                        <td>C</td>
+                        <td id="20"></td>
+                        <td id="21"></td>
+                        <td id="22"></td>
+                        <td id="23"></td>
+                        <td id="24"></td>
+                        <td id="25"></td>
+                        <td id="26"></td>
+                        <td id="27"></td>
+                        <td id="28"></td>
+                        <td id="29"></td>
+                      </tr>
+                      <tr>
+                        <td>D</td>
+                        <td id="30"></td>
+                        <td id="31"></td>
+                        <td id="32"></td>
+                        <td id="33"></td>
+                        <td id="34"></td>
+                        <td id="35"></td>
+                        <td id="36"></td>
+                        <td id="37"></td>
+                        <td id="38"></td>
+                        <td id="39"></td>
+                      </tr>
+                      <tr>
+                        <td>E</td>
+                        <td id="40"></td>
+                        <td id="41"></td>
+                        <td id="42"></td>
+                        <td id="43"></td>
+                        <td id="44"></td>
+                        <td id="45"></td>
+                        <td id="46"></td>
+                        <td id="47"></td>
+                        <td id="48"></td>
+                        <td id="49"></td>
+                      </tr>
+                      <tr>
+                        <td>F</td>
+                        <td id="50"></td>
+                        <td id="51"></td>
+                        <td id="52"></td>
+                        <td id="53"></td>
+                        <td id="54"></td>
+                        <td id="55"></td>
+                        <td id="56"></td>
+                        <td id="57"></td>
+                        <td id="58"></td>
+                        <td id="59"></td>
+                      </tr>
+                      <tr>
+                        <td>G</td>
+                        <td id="60"></td>
+                        <td id="61"></td>
+                        <td id="62"></td>
+                        <td id="63"></td>
+                        <td id="64"></td>
+                        <td id="65"></td>
+                        <td id="66"></td>
+                        <td id="67"></td>
+                        <td id="68"></td>
+                        <td id="69"></td>
+                      </tr>
+                      <tr>
+                        <td>H</td>
+                        <td id="70"></td>
+                        <td id="71"></td>
+                        <td id="72"></td>
+                        <td id="73"></td>
+                        <td id="74"></td>
+                        <td id="75"></td>
+                        <td id="76"></td>
+                        <td id="77"></td>
+                        <td id="78"></td>
+                        <td id="79"></td>
+                      </tr>
+                      <tr>
+                        <td>I</td>
+                        <td id="80"></td>
+                        <td id="81"></td>
+                        <td id="82"></td>
+                        <td id="83"></td>
+                        <td id="84"></td>
+                        <td id="85"></td>
+                        <td id="86"></td>
+                        <td id="87"></td>
+                        <td id="88"></td>
+                        <td id="89"></td>
+                      </tr>
+                      <tr>
+                        <td>J</td>
+                        <td id="90"></td>
+                        <td id="91"></td>
+                        <td id="92"></td>
+                        <td id="93"></td>
+                        <td id="94"></td>
+                        <td id="95"></td>
+                        <td id="96"></td>
+                        <td id="97"></td>
+                        <td id="98"></td>
+                        <td id="99"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div id="input-console">
+                    <form>
+                      <input
+                        type="text"
+                        id="user-input"
+                        placeholder="COORDENADA"
+                      />
+                      <input type="button" id="fire-button" value="Fuego!" />
+                    </form>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+    
+
+   
+
+    <script>
+      let pastGuesses = [];
+      let numberOfHits = 0;
+      let numberOfMisses = 0;
+      let loggedMessageTimes = [];
+
+      class GameBoard {
+        constructor(cellNumber) {
+          this.cellNumber = [];
+
+          this.checkAvailableSpace = function (
+            isVertical,
+            startNumber,
+            shipLength
+          ) {
+            const freeSpaces = [];
+            let startCell = startNumber;
+            let endCell = 0;
+            let increase = 1;
+
+            isVertical
+              ? ((endCell = startNumber + 91), (increase = 10))
+              : ((startCell = startNumber * 10), (endCell = startCell + 10));
+
+            for (let i = startCell; i < endCell; i += increase) {
+              if (typeof this[i] === "undefined") {
+                freeSpaces.push(i);
+              } else {
+                freeSpaces.push("");
+              }
+            }
+            return findPossiblePoints(freeSpaces, shipLength);
+          };
+
+          this.placeShip = function (ship) {
+            const isVertical = randomNumber(1);
+            const increase = isVertical * 9 + 1;
+            const endCell = ship.health * increase;
+            let keepGoing = true;
+
+            while (keepGoing) {
+              let startIndex = randomNumber(9);
+              var possibilities = this.checkAvailableSpace(
+                isVertical,
+                startIndex,
+                ship.health
+              );
+              possibilities.length == 0
+                ? (keepGoing = true)
+                : (keepGoing = false);
+            }
+            const shipStart = chooseRandomFromArray(possibilities);
+            console.log(possibilities);
+            console.log("placing " + ship.name + " at " + shipStart);
+
+            for (let i = 0; i < endCell; i += increase) {
+              gameBoard[shipStart + i] = ship;
+            }
+          };
+
+          this.checkIfShotHitsAnything = (newGuess) => {
+            this[parseInt(newGuess)]
+              ? (hit(newGuess), this[newGuess].resultOfGettingHit())
+              : miss(newGuess); // calls ship.resultOfGettingHit() or tells "missed"
+          };
+        } // constructor
+      } // class GameBoard
+
+      class Ship {
+        constructor(name, shipLength) {
+          Ship.numberOfShips++;
+          this.name = name;
+          this.health = shipLength;
+
+          this.resultOfGettingHit = function () {
+            this.health--;
+
+            this.health > 0
+              ? tellPlayer("Coronavirus resistente")
+              : (tellPlayer("Encontraste el " + this.name),
+                Ship.numberOfShips--,
+                Ship.numberOfShips > 0
+                  ? tellPlayer(
+                      "Estas cerca de encontrar la vacuna  " + this.name + "!",
+                      4000
+                    )
+                  : won()); //: tellPlayer("You won!")) ;
+          };
+        }
+      }
+
+      function findPossiblePoints(rowOrColumn, shipLength) {
+        let counter = 0;
+        const maxLengthAtEachPoint = inReverseOrder(
+          inReverseOrder(rowOrColumn).map((value) =>
+            value === "" ? (counter = 0) : (counter += 1)
+          )
+        );
+
+        const collectAllPossiblePlaces = maxLengthAtEachPoint.reduce(function (
+          total,
+          value,
+          index
+        ) {
+          if (value >= shipLength) {
+            total.push(rowOrColumn[index]);
+          }
+          return total;
+        },
+        []);
+
+        return collectAllPossiblePlaces;
+      }
+
+      function fire() {
+        const typedInGuess = document
+          .getElementById("user-input")
+          .value.toLowerCase();
+        const guessInCorrectFormat = typedInGuess.match(/[a-j]{1}-?[0-9]{1}$/i);
+        document.getElementById("user-input").value = "";
+
+        if (guessInCorrectFormat === null) {
+          tellPlayer("Ingresa una coordenada validad, A0-J9");
+        } else {
+          let firstLetterToNumber = guessInCorrectFormat[0].charCodeAt(0) - 97;
+          let guessParsedToCellId = parseInt(
+            firstLetterToNumber + guessInCorrectFormat[0].slice(-1)
+          );
+
+          if (pastGuesses.includes(guessParsedToCellId)) {
+            tellPlayer("Ya has atacado esa cuadrícula, adivina de nuevo.");
+          } else {
+            pastGuesses.push(guessParsedToCellId);
+            gameBoard.checkIfShotHitsAnything(guessParsedToCellId);
+          }
+        }
+      }
+
+      function hit(location) {
+        document.getElementById(location).className = "hit";
+        numberOfHits++;
+        numberOfHits % 3 === 0
+          ? tellPlayer("Has encontrado otra vacuna")
+          : numberOfHits % 2 === 0
+          ? tellPlayer("Vacuna")
+          : tellPlayer("Estas cerca de la vacuna");
+      }
+
+      function miss(location) {
+        document.getElementById(location).className = "miss";
+        numberOfMisses++;
+        numberOfMisses % 3 === 0
+          ? tellPlayer("Sigues infectado, Busca la vacuna")
+          : numberOfMisses % 2 === 0
+          ? tellPlayer("¡¡ALERTA!! Virus esparcido")
+          : tellPlayer("Fallaste");
+      }
+
+      function won() {
+        document
+          .getElementById("fire-button")
+          .removeEventListener("click", fire);
+        document.getElementById("user-input").onkeypress = (event) =>
+          event.keyCode === 13 ? false : false;
+        document.getElementById("fire-button").id = "fire-button-disarmed";
+
+        tellPlayer("Sobreviviste en " + pastGuesses.length + " intentos.", 4000);
+        tellPlayer(
+          "Making your accuracy: " +
+            Math.round((numberOfHits / pastGuesses.length) * 100) +
+            " percent.",
+          7000
+        );
+        tellPlayer("Game Over...", 12000);
+        tellPlayer("Ahora apaga tu computadora y ve a buscar una vida.", 20000);
+      }
+      function tellPlayer(messageToPlayer, delay) {
+        let now = new Date();
+        let timeSinceLastMessage =
+          now - loggedMessageTimes[loggedMessageTimes.length - 1];
+        let timeOut = delay || 2000 - timeSinceLastMessage; // manual || default : if <= 0 doesn't delay
+        loggedMessageTimes.push(now);
+
+        setTimeout(function () {
+          document.getElementById("message").innerHTML = messageToPlayer;
+        }, timeOut);
+      }
+
+      const inReverseOrder = (array) => array.slice().reverse();
+
+      const randomNumber = (upperLimit) =>
+        Math.floor(Math.random() * (upperLimit + 1));
+
+      const chooseRandomFromArray = (array) =>
+        array[randomNumber(array.length - 1)];
+
+      const gameBoard = new GameBoard(100);
+
+      Ship.numberOfShips = 0;
+      let carrier = new Ship("carrier", 5);
+      let battleship = new Ship("battleship", 4);
+      let cruiser = new Ship("cruiser", 3);
+      let submarine = new Ship("submarine", 3);
+      let destroyer = new Ship("destroyer", 2);
+
+      let shipList = [carrier, battleship, cruiser, submarine, destroyer];
+
+      for (ship of shipList) {
+        gameBoard.placeShip(ship);
+      }
+
+      document.getElementById("fire-button").addEventListener("click", fire);
+      document.getElementById("user-input").onkeypress = fireOnEnterKey;
+
+      function fireOnEnterKey(event) {
+        if (event.keyCode === 13) {
+          fire();
+          return false;
+        }
+      }
+    </script>
+  </body>
+</html>
